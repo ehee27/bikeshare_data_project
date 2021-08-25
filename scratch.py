@@ -146,3 +146,17 @@ def run():
             replay()
             break
 
+ ####### QUESTIONS to ANSWER
+def trip_duration():
+    #3. Trip Duration
+
+    # total travel time
+    df['Trip Duration'].sum()
+
+    # average travel time
+    df['Trip duration'].mean()
+
+#4. User Info
+# counts of each user type
+# counts of each gender (only avail NYC and Chicago)
+# earliest, most recent, most common year of birth (only avail NYC and Chicago)
