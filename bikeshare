@@ -32,7 +32,7 @@ def user_inputs():
             print_sleep(city.title() + " it is.")
             break
         else:
-                print_sleep("Invalid response. Please try again:")
+                print("Invalid response. Please try again:")
                 continue
 
 # Filter by Month
@@ -48,7 +48,7 @@ def user_inputs():
             break
         else:
             if month not in months and month != 'all':
-                print_sleep("Invalid response. Please try again:")
+                print("Invalid response. Please try again:")
                 continue
 
 # Filter by Day
@@ -62,7 +62,7 @@ def user_inputs():
             break
         else:
             if day not in days and day != 'all':
-                print_sleep("Invalid response. Please try again:")
+                print("Invalid response. Please try again:")
                 continue
 
     print_sleep("\nYOUR SELECTIONS\ncity: {}\nmonth: {}\nday: {}".format(city.title(), month.title(), day.title()))
@@ -190,6 +190,35 @@ def user_data(df, city):
     print(e_t)
     time.sleep(2)
 
+def display_data(df):
+    while True:
+        view_data = input("Would you like to view 5 rows of individual trip data? Enter yes or no?").lower()
+        start_loc_x = 0
+        start_loc_y = 5
+        if view_data == 'yes':
+            print_sleep(print(df.iloc[start_loc_x:start_loc_y]))
+            break
+        elif view_data == 'no':
+            continue
+        else:
+            if view_data != 'yes' or 'no':
+                print("Invalid response. Please try again.")
+                continue
+    while True:
+        view_display = input("Do you wish to see the next 5 rows, or quit?\nEnter yes or quit.").lower()
+        if view_display == 'quit':
+            print_sleep("Have a nice day!")
+            break
+        elif view_display =='yes':
+            start_loc_x += 5
+            start_loc_y += 5
+            print_sleep(print(df.iloc[start_loc_x:start_loc_y]))
+            continue
+        else:
+            if view_display != 'yes' or 'quit':
+                print("Invalid response. Please try again.")
+                continue
+
 # run the program
 def run():
     while True:
@@ -200,13 +229,14 @@ def run():
         popular_stations_data(df)
         trip_duration_data(df)
         user_data(df, city)
-        replay = input("\nWould you like to explore more?\nPlease choose y or n:").lower()
-        if "y" in replay:
+        display_data(df)
+        replay = input("\nWould you like to explore more?\nPlease choose yes or no:").lower()
+        if "yes" in replay:
             run()
-        elif "n" in replay:
-            print("\nThanks for exploring! Have a nice day!")
+        elif "no" in replay:
+            print_sleep("\nThanks for exploring! Have a nice day!")
             break
         else:
-            if "y" and "n" not in replay:
-                print_sleep("Invalid response. Please try again:")
+            if "yes" and "no" not in replay:
+                print("Invalid response. Please try again:")
                 continue
